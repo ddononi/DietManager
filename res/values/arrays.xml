@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="sex_chocie">
+        <item>남</item>
+        <item>여</item>
+    </string-array>
+    
+    <string-array name="active_chocie">
+        <item>가벼운</item>
+        <item>보통</item>
+        <item>심한</item>
+        <item>격한</item>
+    </string-array>
+    
+	<string-array name="local_list">
+		<item>서울</item>
+		<item>경기</item>
+		<item>충북</item>
+		<item>충남</item>
+		<item>전남</item>
+		<item>전북</item>
+		<item>강원</item>
+		<item>경남</item>
+		<item>제주</item>
+	</string-array>
+	
+	
+	<string-array name="food_calories">
+		<item>선택</item>	    
+		<item>비빔밥 1인분(730Kcal)</item>
+		<item>공기밥 1공기(300Kcal)</item>
+		<item>김밥 1줄(400Kcal)</item>
+		<item>김치볶음밥 100g(317Kcal)</item>
+		<item>보리밥 100g(141Kcal)</item>
+		<item>볶음밥 1그릇(497Kcal)</item>
+		<item>영양돌솥밥 100g(207Kcal)</item>
+		<item>오곡밥 1공기(673Kcal)</item>
+		<item>현미밥 1공기(280Kcal)</item>
+		<item>콩나물비빔밥 1그릇(417Kcal)</item>
+		<item>돼지고기김치찌개 1인분 (87Kcal)</item>
+		<item>참치김치찌개 1인분(209Kcal)</item>
+		<item>된장찌개 1인분(128Kcal)</item>
+		<item>동태찌개 1인분(224Kcal)</item>
+		<item>콩비지찌개 1인분(204Kcal)</item>
+		<item>청국장찌개 1인분(201Kcal)</item>
+		<item>꽃게찌개 1그릇(83Kcal)</item>
+		<item>삼계탕 1인분(633Kcal)</item>
+		<item>감자탕 1그릇(300Kcal)</item>
+		<item>쇠고기미역국 1인분(31Kcal)</item>
+		<item>배추된장국 1인분(34Kcal)</item>
+		<item>콩나물국 1인분(15Kcal)</item>
+		<item>북어국 1인분(57Kcal)</item>
+		<item>만두국 1인분(477Kcal)</item>
+		<item>조갯국 1그릇(55Kcal)</item>
+		<item>선짓국 100g(78Kcal)</item>
+		<item>취나물 100g(157Kcal)</item>
+		<item>무생채 100g(78Kcal)</item>
+		<item>비빔밥 1인분(730Kcal)</item>
+		<item>과당 100g (386kcal)</item>
+		<item>깨소금 1큰술/6g (40kcal)</item>
+		<item>껌100g (285kcal)</item>
+		<item>식용유 1큰술/13g (108kcal)</item>
+		<item>꿀 100g(294kcal)</item>
+		<item>물엿 1큰술/20g(61kcal)</item>
+		<item>로얄젤리 100g(131kcal)</item>
+		<item>간장 1큰술/18g(7kcal)</item>
+		<item>설탕 100g(387kcal)</item>
+		<item>고추장 1큰술/15g(34kcal)</item>
+		<item>젤리 100g(327kcal)</item>
+		<item>된장 1큰술/18g(25kcal)</item>
+		<item>초콜렛 100g(549kcal)</item>
+		<item>마요네즈 1큰술/18g(92kcal)</item>
+		<item>캬라멜 100g(413kcal)</item>
+		<item>토마토캐첩 1큰술/15g(21kcal)</item>
+		<item>캔디 100g(374kcal)</item>
+		<item>청주 1큰술/13g(17kcal)</item>
+		<item>포도당 100g(335kcal)</item>
+		<item>딸기잼 1큰술/21g(63kcal)</item>
+		<item>엿 100g(374kcal)</item>
+		<item>생크림 1큰술/17g(45kcal)</item>
+		<item>돼지기름 100g(902kcal)</item>
+		<item>땅콩버터 1큰술/17g(105kcal)</item>
+		<item>들기름 100g(884kcal)</item>
+		<item>설탕 100g(387kcal)</item>
+		<item>마가린 100g(759kcal)</item>
+		<item>식초 100g(18kcal)</item>
+		<item>버터 100g(723kcal)</item>
+		<item>참기름 100g(883kcal)</item>
+		<item>옥수수기름 100g(880kcal)</item>
+		<item>콩기름 100g(883kcal)</item>
+		<item>콩나물국 1인분(15kcal)</item>
+		<item>배추김치 100g(33kcal)</item>
+		<item>북어국 1인분(57kcal)</item>
+		<item>열무김치 100g(21kcal)</item>
+		<item>미역오이냉국 1인분(24kcal)</item>
+		<item>깍두기 100g(31kcal)</item>
+		<item>참치김치찌개 1인분(209kcal)</item>
+		<item>비빔밥 1인분(730kcal)</item>
+		<item>된장찌개 1인분(128kcal)</item>
+		<item>삼계탕 1인분(630kcal)</item>
+		<item>갈비찜 1인분(220kcal)</item>
+		<item>떡국 1인분(568kcal)</item>
+		<item>감자조림 (100g71kcal)</item>
+		<item>칼국수 1인분(545kcal)</item>
+		<item>장조림 100g(110kcal)</item>
+		<item>가지나물 100g(61kcal)</item>
+		<item>북어조림 100g(477kcal)</item>
+		<item>갈비탕 1인분(630kcal)</item>
+		<item>불고기 100g(163kcal)</item>
+		<item>갈치구이 1토막(174kcal)</item>
+		<item>낙지볶음 100g(106kcal)</item>
+		<item>취나물 100g(157kcal)</item>
+		<item>오징어볶음 100g(117kcal)</item>
+		<item>족발 100g(125kcal)</item>
+		<item>멸치볶음 100g(480kcal)</item>
+		<item>대구탕 1그릇(110kcal)</item>
+		<item>잡채 100g(206kcal)</item>
+		<item>도토리묵 100g(47kcal)</item>
+		<item>김치전 1인분(196kcal)</item>
+		<item>보리밥 1그릇(141kcal)</item>
+		<item>파전 1인분(195kcal)</item>
+		<item>보신탕 100g(118kcal)</item>
+		<item>시금치나물 100g(79kcal)</item>
+		<item>콩나물 100g(46kcal)</item>
+		<item>도라지나물 100g(110kcal)</item>
+		<item>장어구이 100g(173kcal)</item>
+		<item>배1/4개 100g(51kcal)</item>
+		<item>귤2개 100g(48kcal)</item>
+		<item>감1개 100g(68kcal)</item>
+		<item>사과큰 것 1/2개100g(50kcal)</item>
+		<item>수박1쪽 100g(21kcal)</item>
+		<item>참외3쪽 100g(49kcal)</item>
+		<item>키위중간것 2개100g(56kcal)</item>
+		<item>메론1쪽 50g(82kcal)</item>
+		<item>오렌지1개 90g(110kcal)</item>
+		<item>파1뿌리 (15kcal)</item>
+		<item>감자1개 50g(34kcal)</item>
+		<item>콩나물1인분 100g(32kcal)</item>
+		<item>옥수수1개 100g(80kcal)</item>
+		<item>고구마1개 140g(180kcal)</item>
+		<item>포도1/3송이 100g(8kcal)</item>
+		<item>딸기10알 130g(23kcal)</item>
+		<item>자몽1/2개 100g(56kcal)</item>
+		<item>바나나1개 100g(80kcal)</item>
+		<item>당근 100g(32kcal)</item>
+		<item>오이 100g(20kcal)</item>
+		<item>시금치1인분 70g(50kcal)</item>
+		<item>가지1개 (25kcal)</item>
+		<item>자두5알 (25kcal)</item>
+		<item>양상추 100g(10kcal)</item>
+		<item>앵두 10알(25kcal)</item>
+		<item>양파1개 70g(65kcal)</item>
+		<item>샐러리1줄 20g(5kcal)</item>
+		<item>호박1개 100g(75kcal)</item>
+		<item>깻잎10장 20g(5kcal)</item>
+		<item>고추 5개(1kcal)</item>
+		<item>대추 10알(80kcal)</item>
+		<item>토마토 100g(20kcal)</item>
+		<item>복숭아1/2개 100g(38kcal)</item>
+		<item>파인애플중간것 1/3개100g(1kcal)</item>
+		<item>팽이버섯 100g(1kcal)</item>
+		<item>방울토마토 10알(15kcal)</item>
+		<item>블랙커피1잔 (0kcal)</item>
+		<item>프림커피1잔 (6kcal)</item>
+		<item>밀크커피1잔 (50kcal)</item>
+		<item>콜라1캔 250g(80kcal)</item>
+		<item>이온음료1캔 250g (44kcal)</item>
+		<item>식이성섬유음료1병 100g(45Kcal)</item>
+		<item>녹차 1잔(0kcal)</item>
+		<item>코코아가루 10g(33kcal)</item>
+		<item>인삼차가루 10g(33kcal)</item>
+		<item>유자차 100g(85kcal)</item>
+		<item>요구르트1병 145ml(117kcal)</item>
+		<item>포카리스웨트1캔 250ml(44kcal)</item>
+		<item>코로나 200ml(143kcal)</item>
+		<item>김삿갓1병 360ml(536kcal)</item>
+		<item>파스퇴르요쿠르트1병 (96kcal)</item>
+		<item>저지방우유1잔 (125kcal)</item>
+		<item>실론티1캔 (37kcal)</item>
+		<item>토마토주스1캔 (92kcal)</item>
+		<item>밀러 200ml(96kcal)</item>
+		<item>우유1잔 (200ml)(125kcal)</item>
+		<item>두유1잔 (125kcal)</item>
+		<item>쵸코우유 1잔(160kcal)</item>
+		<item>식혜1캔 238ml(240kcal)</item>
+		<item>수정과 200ml(200kcal)</item>
+		<item>오렌지주스1병 180ml(101kcal)</item>
+		<item>아이리시커피1잔 (150kcal)</item>
+		<item>캔커피(제로)1캔 (57kcal)</item>
+		<item>딸기쥬스1잔 180mI(85kcal)</item>
+		<item>당근쥬스1병작은병 (2kcal)</item>
+		<item>카푸치노1잔 (95kcal)</item>
+		<item>카페오레1잔 (57kcal)</item>
+		<item>갈아만든배1캔 (144kcal)</item>
+		<item>해초나라1병 (120kcal)</item>
+		<item>피나콜라다1잔 130ml(130kcal)</item>
+		<item>레몬에이드1잔 (180kcal)</item>
+		<item>오렌지쥬스1병 (92kcal)</item>
+		<item>율무차1잔 (112kcal)</item>
+		<item>메치니코프1병 (145kcal)</item>
+		<item>비엔나커피1잔 (225kcal)</item>
+		<item>썬라이즈1잔 (120kcal)</item>
+		<item>감식초 180m(l80kcal)</item>
+		<item>포도쥬스 180m(l95kcal)</item>
+		<item>사과쥬스 180ml(80kcal)</item>
+		<item>깜찍이소다1캔 (95kcal)</item>
+		<item>환타1병 180ml(130kcal)</item>
+		<item>사이다1캔 250ml(15kcal)</item>
+		<item>소주1잔 (90kcal)</item>
+		<item>드라이진1잔 (130kcal)</item>
+		<item>브랜디1잔 (140kcal)</item>
+		<item>위스키1잔(140kcal)</item>
+		<item>청주1잔 (260kcal)</item>
+		<item>맥주1잔 (100kcal)</item>
+		<item>포도주1잔 (50kcal)</item>
+		<item>샴페인1잔 (20kcal)</item>
+		<item>막걸리1컵 (100kcal)</item>　
+		<item>청하1병 360m(l403kcal)</item>　
+		<item>핑크레이디1잔 150ml(130kcal)</item>
+		<item>샴페인1잔 100ml(80kcal)</item>
+		<item>계란 100g(154kcal)</item>
+		<item>맛김 100g(0kcal)</item>
+		<item>메추리알 100g(198kcal)</item>
+		<item>다시마 100g(0kcal)</item>
+		<item>오리알 100g(186kcal)</item>
+		<item>산낙지 100g(54kcal)</item>
+		<item>크림 100g(433kcal)</item>
+		<item>굴 100g(61kcal)</item>
+		<item>햄 100g(193kcal)</item>
+		<item>굴비 100g(316kcal)</item>
+		<item>돼지고기 100g135kcal)</item>
+		<item>소고기(등심) 100g(260kcal)</item>
+		<item>오리고기 100g(333kcal)</item>
+		<item>꽃게 100g(127kcal)</item>
+		<item>로스햄 100g(407kcal)</item>
+		<item>대합 100g(57kcal)</item>
+		<item>육회 100g(147kcal)</item>
+		<item>마른오징어 100g(331kcal)</item>
+		<item>치즈 100g(405kcal)</item>
+		<item>물오징어 100g(84kcal)</item>
+		<item>생미역 100g(9kcal)</item>
+		<item>멸치 100g(232kcal)</item>
+		<item>참치 100g(134kcal)</item>
+		<item>문어 100g(132kcal)</item>
+		<item>광어회 100g(104kcal)</item>
+		<item>새우젓 100g(47kcal)</item>
+		<item>쥐포 100g(331kcal)</item>
+		<item>식빵1쪽 (103kcal)</item>
+		<item>곰보빵 1개(200kcal)</item>
+		<item>단팥빵 1개(197kcal)</item>
+		<item>바게뜨빵 3조각(132kcal)</item>
+		<item>토스트 1조각(230kcal)</item>
+		<item>마늘바게트 1조각(200kcal)</item>
+		<item>햄 치즈샌드위치 1조각(468kcal)</item>
+		<item>치즈케이크 1조각(290kcal)</item>
+		<item>모닝롤 1개(41kcal)</item>
+		<item>버터크림 케이크1조각(411kcal)</item>
+		<item>하드롤 1개(121kcal)</item>
+		<item>꽈배기도너츠 1개(250kcal)</item>
+		<item>초코도너츠 1개(281kcal)</item>　　　
+		<item>밤 100g(564kcal)</item>
+		<item>잣 3큰술25g(135kcal)</item>
+		<item>호두 5알20g(129kcal)</item>
+		<item>땅콩 100g(180kcal)</item>
+		<item>아몬드 3큰술20g(119kcal)</item>
+		<item>건포도 3큰(25g(69kcal)</item>　
+		<item>야채샐러드 1인분(176kcal)</item>
+		<item>탕수육 1인분(616kcal)</item>
+		<item>안심스테이크 1인분(663kcal)</item>
+		<item>양장피 100g(283kcal)</item>
+		<item>오므라이스 1인분(662kcal)</item>
+		<item>울면 1인분(120kcal)</item>
+		<item>카레라이스 1인분(502kcal)</item>
+		<item>짬뽕 1인분(437kcal)</item>
+		<item>감자튀김 100g(440kcal)</item>
+		<item>탕평채 1인분(197kcal)</item>
+		<item>돈까스 100g(130kcal)</item>
+		<item>유부초밥 1인분(800kcal)</item>
+		<item>베이컨 100g(516kcal)</item>
+		<item>생선초밥 1인분(732kcal)</item>
+		<item>오이피클 100g(52kcal)</item>
+		<item>김초밥 1인분(500kcal)</item>
+		<item>참치샐러드 100g(195kcal)</item>
+		<item>회덮밥 1인분(512kcal)</item>
+		<item>피자 100g(250kcal)</item>
+		<item>일본식우동 1인분(332kcal)</item>
+		<item>짜장면 1인분(670kcal)</item>
+		<item>돌냄비우동 1인분(577kcal)</item>
+		<item>군만두 1인분(630kcal)</item>
+		<item>우동 1인분(610kcal)</item>
+		<item>깐풍기 1인분(567kcal)</item>
+		<item>유부 100g(388kcal)</item>
+		<item>볶음밥 1인분(617kcal)</item>
+		<item>해파리냉채 1인분(189kcal)</item>
+	</string-array>	
+	    
+
+</resources>

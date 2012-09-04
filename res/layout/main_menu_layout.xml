@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fefefe"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/exercise_run_btn"
+        style="@style/button"
+        android:onClick="mOnClick"
+        android:text="운동하기" />
+
+    <Button
+        android:id="@+id/exercise_cal_info_btn"
+        style="@style/button"
+        android:onClick="mOnClick"
+        android:text="운동칼로리정보" />
+    
+    <Button
+        android:id="@+id/cal_info_btn"
+        style="@style/button"
+        android:onClick="mOnClick"
+        android:text="칼로리정보" />    
+
+    <Button
+        android:id="@+id/tip_info_btn"
+        style="@style/button"
+        android:onClick="mOnClick"
+        android:text="상식및식습관" />
+
+    <Button
+        android:id="@+id/day_cal_manage"
+        style="@style/button"
+        android:onClick="mOnClick"        
+        android:text="일일관리" />
+    
+    <Button
+        android:id="@+id/weather_info"
+        style="@style/button"
+        android:onClick="mOnClick"        
+        android:text="날씨정보" />    
+        
+
+    <Button
+        android:id="@+id/user_info"
+        style="@style/button"
+        android:onClick="mOnClick"              
+        android:text="사용자정보" />    
+
+    <Button
+        android:id="@+id/help_btn"
+        style="@style/button"
+        android:onClick="mOnClick"
+        android:text="도움말" />
+
+</LinearLayout>
