@@ -22,7 +22,7 @@ import android.widget.Toast;
  */
 public class UserInfoActivity extends BaseActivity {
 	private EditText nameEt; 		// 이름
-	private EditText agelEt;			// 나이
+	private EditText agelEt;		// 나이
 	private EditText heightEt;		// 키
 	private EditText weightEt;		// 체중
 	
@@ -48,6 +48,7 @@ public class UserInfoActivity extends BaseActivity {
 				if (getFormValue()) { // 폼값을 입력했을때만 전송
 					// 저장 입력했을경우 유저 정보를 디비에 저장한다.
 					modifyUserinfo();
+					myInfoData = null;	//   사용자정보를 새로 받아온다.
 					startActivity(new Intent(UserInfoActivity.this, MainMenuActivity.class));
 					finish();
 				}

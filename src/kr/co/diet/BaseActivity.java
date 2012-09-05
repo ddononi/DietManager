@@ -1,10 +1,12 @@
 package kr.co.diet;
 
+import kr.co.diet.dao.MyInfoData;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -44,7 +46,24 @@ public class BaseActivity extends Activity {
     public static final String EXERCISE_LIST_URL = "exercise_list.html";
     public static final String TIP_URL = "tip_info.html";
     public static final String CAL_URL = "cal_info.html";
-    /** 옵션 메뉴 만들기 */
+
+    
+	protected static MyInfoData myInfoData;
+	
+    @Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		//	사용자정보가 없으면 사용자 정보를 불러온다.
+		if(myInfoData == null){
+			DbHelper db = new DbHelper(this);
+			myInfoData = db.loadUserInfo();
+			db.close();
+		}
+	}
+
+	/** 옵션 메뉴 만들기 */
     @Override
     public boolean onCreateOptionsMenu(final Menu menu){
     	super.onCreateOptionsMenu(menu);

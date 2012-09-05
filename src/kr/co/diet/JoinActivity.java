@@ -23,11 +23,11 @@ import android.widget.Toast;
  */
 public class JoinActivity extends BaseActivity {
 	private EditText nameEt; 		// 이름
-	private EditText agelEt;			// 나이
+	private EditText agelEt;		// 나이
 	private EditText heightEt;		// 키
 	private EditText weightEt;		// 체중
 	
-	private Spinner sexSpinner;	// 성별 스피너
+	private Spinner sexSpinner;		// 성별 스피너
 	private Spinner activeSpinner;	// 활동량 스피너
 	
 	private String sex;

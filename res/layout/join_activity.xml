@@ -88,6 +88,7 @@
             <Spinner
                 android:prompt="@string/sex_title"
                 android:id="@+id/sex_spinner"
+                android:entries="@array/sex_chocie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dip"                

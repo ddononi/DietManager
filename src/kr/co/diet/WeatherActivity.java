@@ -38,10 +38,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * @author ddononi
- *
- */
+
 public class WeatherActivity extends BaseActivity {
 	private TextView mCurrLocal;
 	private TextView mCurrTemp;

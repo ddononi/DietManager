@@ -557,9 +557,9 @@ CurrentLocationEventListener, POIItemEventListener, OnClickListener, ReverseGeoC
 			MapPOIItem item = mMapView.findPOIItemByTag(END_TAG);
 			try{
 				item.setItemName(addressString);
+				mMapView.addPOIItem(item);
+				endPlaceTv.setText("µµÂø À§Ä¡ : " + addressString);				
 			}catch(NullPointerException npe){}			
-			mMapView.addPOIItem(item);
-			endPlaceTv.setText("µµÂø À§Ä¡ : " + addressString);
 		}
 
 		reverseGeoCoder = null;
