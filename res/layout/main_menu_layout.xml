@@ -4,18 +4,41 @@
     android:layout_height="fill_parent"
     android:background="#fefefe"
     android:orientation="vertical" >
+    
+
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:src="@drawable/menu"
+       android:scaleType="fitXY"
+        />    
+
+   <LinearLayout
+       android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
 
     <Button
         android:id="@+id/exercise_run_btn"
         style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="90dp"
         android:onClick="mOnClick"
         android:text="운동하기" />
 
     <Button
         android:id="@+id/exercise_cal_info_btn"
         style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="90dp"        
         android:onClick="mOnClick"
-        android:text="운동칼로리정보" />
+        android:text="운동칼로리" />       
+       
+   </LinearLayout>
+
     
     <Button
         android:id="@+id/cal_info_btn"
