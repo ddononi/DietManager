@@ -1,5 +1,6 @@
 package kr.co.diet;
 
+import kr.co.diet.map.MapActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,7 @@ public class MainMenuActivity extends BaseActivity {
 			break;		
 		
 		case R.id.exercise_run_btn :	// 운동방법
-			intent.setClass(this, ExerciseRunActivity.class);
+			intent.setClass(this, MapActivity.class);
 			break;
 			
 		
