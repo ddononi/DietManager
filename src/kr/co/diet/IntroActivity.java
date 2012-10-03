@@ -12,7 +12,7 @@ import android.view.MotionEvent;
  *	첫 시작 엑티비티
  *
  */
-public class IntroActivity extends BaseActivity {
+public class IntroActivity extends ConstantActivity {
 	private SharedPreferences settings;	
 	private Context context;
     /** Called when the activity is first created. */

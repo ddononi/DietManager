@@ -38,11 +38,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * @author ddononi
- *
- */
-public class WeatherActivity extends BaseActivity {
+
+public class WeatherActivity extends ConstantActivity {
 	private TextView mCurrLocal;
 	private TextView mCurrTemp;
 	private TextView mCurrHumdity;
@@ -52,7 +49,7 @@ public class WeatherActivity extends BaseActivity {
 	private Context mContext;
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState) {
+	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.weather_layout);
 		mContext = this;

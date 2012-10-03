@@ -2,19 +2,18 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ccffffff"
+    android:background="@drawable/bg"
     android:fadingEdge="none"
     android:minWidth="280dip" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#ccffffff"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="60px"
+            android:layout_height="50dp"
             android:paddingLeft="15px"
             android:paddingRight="15px" >
 
@@ -23,20 +22,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="bottom"
-                android:padding="10dp"
-                android:textColor="#000"
-             
-                android:textAppearance="?android:attr/textAppearanceMedium" 
-				android:text="나의정보" />
-
+                android:padding="5dp"
+                android:text="나의정보"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/ButtonText" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"                       
             android:id="@+id/top"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="#5a9af7"
             android:orientation="vertical"
             android:padding="1dp" />
@@ -44,7 +41,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dip"
+            android:layout_marginTop="10dip"
             android:orientation="horizontal" >
 
             <TextView
@@ -53,11 +50,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dip"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="이름 : "
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                style="@style/ButtonText" />
 
             <EditText
                 android:id="@+id/input_name"
@@ -80,11 +75,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dip"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="성별 : "
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                style="@style/ButtonText" />
 
             <Spinner
                 android:id="@+id/sex_spinner"
@@ -107,11 +100,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dip"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="나이 : "
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                style="@style/ButtonText" />
 
             <EditText
                 android:id="@+id/age_input"
@@ -136,11 +127,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dip"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="신장 : "
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                style="@style/ButtonText" />
 
             <EditText
                 android:id="@+id/height_input"
@@ -165,11 +154,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dip"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="체중 : "
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                style="@style/ButtonText" />
 
             <EditText
                 android:id="@+id/weight_input"
@@ -193,11 +180,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dip"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="평소활동량"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                style="@style/ButtonText" />
 
             <Spinner
                 android:id="@+id/active_spinner"
@@ -211,11 +196,11 @@
             android:id="@+id/modi_btn"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
             android:text="수정하기"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             android:textColor="#fff" />
     </LinearLayout>
 

@@ -26,8 +26,8 @@
     	<activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".WeatherActivity"></activity>          
     	<activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".CalWebViewActivity"></activity>          
     	<activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".TipWebViewActivity"></activity>           
-    	<activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".ExerciseWebViewActivity"></activity>          
-        <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".ExerciseRunActivity"></activity>        
+    	<activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".ExerciseListActivity"></activity>          
+        <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".map.MapActivity"></activity>        
         <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".ExerciseActivity"></activity>        
         <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".HelpActivity"></activity>
         <activity android:windowSoftInputMode="stateHidden"  android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".JoinActivity"></activity>

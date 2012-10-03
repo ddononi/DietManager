@@ -1,16 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#66ffffff"
-    android:id="@+id/mainLayout">
+    android:layout_height="fill_parent">
+    
+    <RelativeLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="match_parent"  >      
+	    <LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical"
+		    android:layout_weight="1"
+		    android:id="@+id/map_parent">        
+		    
+			<!-- 네이버 .오픈 API 지도 -->
+			<com.nhn.android.maps.NMapView 
+			    android:layout_width="fill_parent" 
+			    android:layout_height="fill_parent" 
+			    android:text="@string/app_name"
+			    android:id="@+id/mapView"/>	        
+	
+	    </LinearLayout>
+	    
+	    <Button
+	        android:layout_marginTop="15dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginRight="5dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_width="50dp"
+	        android:layout_height="45dp"
+	        android:text="+"
+	        android:id="@+id/zoom_in"
+	        android:background="@drawable/btn"
+	        android:textColor="#fff"
+	        android:textSize="30dp"
+	        />   
+	        
+	    <Button
+	        android:layout_below="@id/zoom_in"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginTop="5dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_width="50dp"
+	        android:layout_height="45dp"
+	        android:text="-"
+	        android:id="@+id/zoom_out"
+	        android:background="@drawable/btn"
+	        android:textColor="#fff"
+	        android:textSize="30dp"
+	        />     
+	        
+		<ImageButton
+		    android:layout_centerVertical="true"
+		    android:id="@+id/loc_btn"
+		    android:layout_below="@id/zoom_out"
+	        android:layout_width="50dp"
+	        android:layout_height="45dp"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginTop="5dp"
+	        android:layout_alignParentRight="true"	        
+		    android:background="@drawable/cus_loc_btn"
+		    android:contentDescription="내위치" />	  
+	        
+        	    
+    </RelativeLayout>
+    <LinearLayout 
+        android:id="@+id/bottom_box"
+        android:layout_alignParentBottom="true"
+	    android:layout_width="fill_parent"
+	    android:layout_height="155dp"
+	    android:orientation="vertical"
+	    android:background="@drawable/txt_win_bg"  >
+		
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/start_place"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text=""
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="10dp"
+		    android:layout_marginTop="5dp"
+            />		
+            
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/end_place"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="10dp"
+            />        
+                    
+            
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/distance_info"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="10dp"
+            />  
+                    
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/endTime"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="10dp"
+            />           
+		
+        <Button
+            android:id="@+id/trace_btn"
+	        android:text="출발"
+		    android:layout_width="fill_parent"
+		    android:layout_height="40dp"
+		    android:textColor="#fff"
+		    android:textSize="18sp"
+            style="@style/ButtonText"
+            android:background="@drawable/red_button"
+		    android:layout_margin="10dp"
+		    android:layout_marginBottom="5dp"
+             />
+    </LinearLayout>
 
-	<!-- 네이버 .오픈 API 지도 -->
-	<com.nhn.android.maps.NMapView 
-	    android:layout_width="fill_parent" 
-	    android:layout_height="fill_parent" 
-	    android:text="@string/app_name"
-	    android:id="@+id/mapView"/>
-</LinearLayout>
-
+</RelativeLayout>

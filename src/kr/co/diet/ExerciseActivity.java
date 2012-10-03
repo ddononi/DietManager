@@ -1,5 +1,6 @@
 package kr.co.diet;
 
+import kr.co.utils.BaseActivity;
 import android.os.Bundle;
 
 /**
@@ -8,7 +9,7 @@ import android.os.Bundle;
 public class ExerciseActivity extends BaseActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.exercise_layout);

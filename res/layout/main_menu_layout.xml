@@ -2,56 +2,132 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#fefefe"
+    android:background="@drawable/bg"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/exercise_run_btn"
-        style="@style/button"
-        android:onClick="mOnClick"
-        android:text="운동하기" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/menu" />
 
-    <Button
-        android:id="@+id/exercise_cal_info_btn"
-        style="@style/button"
-        android:onClick="mOnClick"
-        android:text="운동칼로리정보" />
-    
-    <Button
-        android:id="@+id/cal_info_btn"
-        style="@style/button"
-        android:onClick="mOnClick"
-        android:text="칼로리정보" />    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/tip_info_btn"
-        style="@style/button"
-        android:onClick="mOnClick"
-        android:text="상식및식습관" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/day_cal_manage"
-        style="@style/button"
-        android:onClick="mOnClick"        
-        android:text="일일관리" />
-    
-    <Button
-        android:id="@+id/weather_info"
-        style="@style/button"
-        android:onClick="mOnClick"        
-        android:text="날씨정보" />    
-        
+            <Button
+                android:id="@+id/exercise_run_btn"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_button"
+                android:onClick="mOnClick"
+                android:text="운동하기" />
 
-    <Button
-        android:id="@+id/user_info"
-        style="@style/button"
-        android:onClick="mOnClick"              
-        android:text="사용자정보" />    
+            <Button
+                android:id="@+id/exercise_cal_info_btn"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_button"
+                android:onClick="mOnClick"
+                android:text="운동내역" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/help_btn"
-        style="@style/button"
-        android:onClick="mOnClick"
-        android:text="도움말" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/cal_info_btn"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/red_button"
+                android:onClick="mOnClick"
+                android:text="칼로리정보" />
+
+            <Button
+                android:id="@+id/tip_info_btn"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/red_button"
+                android:onClick="mOnClick"
+                android:text="상식및식습관" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/day_cal_manage"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_button"
+                android:onClick="mOnClick"
+                android:text="일일관리" />
+
+            <Button
+                android:id="@+id/weather_info"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/yellow_button"
+                android:onClick="mOnClick"
+                android:text="날씨정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/user_info"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/green_button"
+                android:onClick="mOnClick"
+                android:text="사용자정보" />
+
+            <Button
+                android:id="@+id/help_btn"
+                style="@style/ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/green_button"
+                android:onClick="mOnClick"
+                android:text="도움말" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

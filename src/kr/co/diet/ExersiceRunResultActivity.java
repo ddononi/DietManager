@@ -1,5 +1,5 @@
 package kr.co.diet;
 
-public class ExersiceRunResultActivity extends BaseActivity {
+public class ExersiceRunResultActivity extends ConstantActivity {
 
 }

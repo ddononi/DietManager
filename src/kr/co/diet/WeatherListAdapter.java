@@ -55,7 +55,7 @@ public class WeatherListAdapter extends BaseAdapter {
 		conditionTv.setText(data.getCondition());
 		maxTempTv.setText(data.getHighTemp() +"กษ");
 		minTempTv.setText(data.getLowTemp() +"กษ");
-		imgTv.setImasgeUrl(BaseActivity.GOOGLE_URL + data.getWeatherImgUrl());
+		imgTv.setImasgeUrl(ConstantActivity.GOOGLE_URL + data.getWeatherImgUrl());
 		return item;
 	}
 
