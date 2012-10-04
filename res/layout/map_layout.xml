@@ -22,8 +22,28 @@
 	
 	    </LinearLayout>
 	    
+	    <LinearLayout 
+	        android:id="@+id/top_box"
+	        android:layout_alignParentTop="true"
+		    android:layout_width="fill_parent"
+		    android:layout_height="35dp"
+		    android:orientation="vertical"
+		    android:background="@drawable/txt_win_bg"  >
+			
+	        <TextView
+	            android:textColor="#fff"
+	            android:id="@+id/distance"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:text=""
+			    android:layout_marginBottom="5dp"
+			    android:layout_marginLeft="10dp"
+			    android:layout_marginTop="5dp"
+	            />		
+	   </LinearLayout>		    
+	    
 	    <Button
-	        android:layout_marginTop="15dp"
+	        android:layout_marginTop="43dp"
 	        android:layout_alignParentTop="true"
 	        android:layout_marginRight="5dp"
 	        android:layout_alignParentRight="true"
@@ -95,7 +115,7 @@
             
         <TextView
             android:textColor="#fff"
-            android:id="@+id/distance_info"
+            android:id="@+id/startTime"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_marginBottom="5dp"

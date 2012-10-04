@@ -32,6 +32,7 @@
         <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".HelpActivity"></activity>
         <activity android:windowSoftInputMode="stateHidden"  android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".JoinActivity"></activity>
         <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".MainMenuActivity"></activity>
+        <activity android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" android:name=".map.ExerciseResultMapActivity"></activity>        
     </application>
 
 

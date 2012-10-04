@@ -1,12 +1,15 @@
 package kr.co.diet.map;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import kr.co.diet.DbHelper;
 import kr.co.diet.R;
+import kr.co.diet.dao.PathPoint;
 import kr.co.diet.dao.RunningData;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -61,7 +64,6 @@ import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 public class ExerciseResultMapActivity extends NMapActivity {
 	// naver open api key
 	private static final String API_KEY = "fae49f1c854f7d48285204deaa8dfd9d";
-	private static final int MAP_LEVEL = 10;
 	private static final String LOG_TAG = "NMapViewer";
 	// mapview 설정
 	private NMapView mMapView = null;
@@ -74,24 +76,15 @@ public class ExerciseResultMapActivity extends NMapActivity {
 	private final ArrayList<String> addressList = new ArrayList<String>(); // 주소를 저장할 리스트
 	
 	// ui
-	private TextView distanceInfoTv;	// 이동 거리르 정보 텍스트뷰
+	private TextView startTimeTv;		// 출발 시각
+	private TextView endTimeTv;			// 도착 시각
 	private TextView startPlaceTv;		// 출발 위치
 	private TextView endPlaceTv;		// 도착 위치
-	private NMapPOIdataOverlay myPlaceOveray;	// 현위치 오버레이	
-	// location
-	private Location mLocation;
-	private LocationManager mLocationManager;
-	// trace 
-	private boolean isStarted = false;
-	private double beforeLat = -1;	// 이전 위도거리
-	private double beforeLon = -1;	// 이전 경도 거리	
-	private int totalDistance = 0;	// 총 이동거리
-	// 추적 좌표 컬랙션
-	private ArrayList<NGeoPoint> traceList = new ArrayList<NGeoPoint>();
+	private TextView distanceTv;		// 운동거리
+
 	// 운동정보Dao
 	private RunningData runningData = new RunningData();
-	
-	private final Handler mHandler = new Handler();
+
 
 	/** Called when the activity is first created. */
 	@Override
@@ -115,12 +108,14 @@ public class ExerciseResultMapActivity extends NMapActivity {
 		mMapController.setMapViewBicycleMode(!mMapController
 				.getMapViewBicycleMode());
 		// use built in zoom controls
+		/*
 		NMapView.LayoutParams lp = new NMapView.LayoutParams(
 				NMapView.LayoutParams.WRAP_CONTENT,
 				NMapView.LayoutParams.WRAP_CONTENT,
 				NMapView.LayoutParams.TOP_LEFT);
 		mMapView.setBuiltInZoomControls(true, lp);
-
+		*/
+		
 		// create resource provider
 		mMapViewerResourceProvider = new NMapViewerResourceProvider(this);
 		// create overlay manager
@@ -166,38 +161,31 @@ public class ExerciseResultMapActivity extends NMapActivity {
 		});
 
 		initLayout();				// 레이아웃 초기화
-		initLocationListener();	// 위치 수신 설정
-		moveToMyPlace();
 	}
 
 	/**
 	 * 레이아웃 초기화
 	 */
 	private void initLayout() {
-		distanceInfoTv = (TextView)findViewById(R.id.distance_info);
 		startPlaceTv = (TextView)findViewById(R.id.start_place);
-		endPlaceTv = (TextView)findViewById(R.id.end_place);		
+		endPlaceTv = (TextView)findViewById(R.id.end_place);
+		distanceTv = (TextView)findViewById(R.id.distance);
+		startTimeTv = (TextView)findViewById(R.id.startTime);
+		endTimeTv  = (TextView)findViewById(R.id.endTime);	
+		final Button  traceBtn = (Button) findViewById(R.id.trace_btn);		
+		traceBtn.setVisibility(View.GONE);
+		
 		// 내 위치로 이동 버튼 처리
 		ImageButton locBtn = (ImageButton) findViewById(R.id.loc_btn);
 		locBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-					// 지도를 현재 위치로 이동
-					moveToMyPlace();
+				//  내 위치 찾기
+				startMyLocation();
 			}
 		});
-		// 출발 or 도착 버튼 처리
-		final Button  traceBtn = (Button) findViewById(R.id.trace_btn);
-		// 현위치를 찾을때까지 출발버튼을 잠근다.
-		traceBtn.setEnabled(false);
-		traceBtn.setClickable(false);		
-		traceBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				doTrace(traceBtn);				
-			}
-		});
+
 		
 		// 줌 인아웃 처리
 		Button zoomInBtn = (Button)findViewById(R.id.zoom_in);
@@ -215,101 +203,55 @@ public class ExerciseResultMapActivity extends NMapActivity {
 			}
 		});		
 	}
-	
-	/*
-	 * 수신 환경에 따라 LocationListener 를 설정한다.
-	 */
-	private void initLocationListener() {
-		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		// criteria 를 이용하여 적절한 위치 공급자를 이용한다.
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_FINE);// 정확도
-		criteria.setPowerRequirement(Criteria.POWER_HIGH); // 전원 소비량
-		criteria.setAltitudeRequired(false); // 고도 사용여부
-		criteria.setBearingRequired(false); //
-		criteria.setSpeedRequired(false); // 속도
-		criteria.setCostAllowed(true); // 금전적비용
-		String provider = LocationManager.GPS_PROVIDER;
-		// String provider = mLocationManager.getBestProvider(criteria, true);
-		// location = mLocationManager.getLastKnownLocation(provider);
-		mLocationManager.requestLocationUpdates(provider, 60000L, 0, loclistener);// 현재정보를
-																				// 업데이트
 
-		// gps 활성화 유무체크후 비활성화시 gps 환경설정으로 보냄
-		if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-				|| !mLocationManager
-						.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-			showLocationDialog();
-		}
-	}	
-	
-
-	/**
-	 * 출발, 도착오버레이 처리 및 이동경로 처리
-	 * @param traceBtn
-	 */
-	private void doTrace(final Button traceBtn) {
-		// set POI data
-		NMapPOIdata poiData = new NMapPOIdata(1, mMapViewerResourceProvider);
-		poiData.beginPOIdata(1);				
-		// 출발 혹은 도착시 오버레이 아이템을 보여준다.
-		if(TextUtils.equals(traceBtn.getText(), "출발")  ){
-			poiData.addPOIitem(mLocation.getLongitude(), mLocation.getLatitude(), "", NMapPOIflagType.FROM, null);
-			traceBtn.setText("도착");
-			isStarted = true;
-			String startPlace = getAddressStr(mLocation.getLatitude(), mLocation.getLongitude());
-			runningData.setStartPlace(startPlace);			
-			startPlaceTv.setText("출발 : " + startPlace);
-		}else{		// 도착시 버튼 숨김
-			isStarted = false;
-			poiData.addPOIitem(mLocation.getLongitude(), mLocation.getLatitude(), "", NMapPOIflagType.TO, null);
-			traceBtn.setVisibility(View.GONE);
-			String endPlace = getAddressStr(mLocation.getLatitude(), mLocation.getLongitude());
-			runningData.setEndPlace(endPlace);
-			endPlaceTv.setText("도착 : " +endPlace);			
-			// 이동거리 기록 처리
-			saveTrace();
-		}
-		poiData.endPOIdata();
-		mOverlayManager.createPOIdataOverlay(poiData, null);
-		
-		traceList.add(new NGeoPoint(mLocation.getLongitude(), mLocation.getLatitude()));
-		// set path data points
-		NMapPathData pathData = new NMapPathData(traceList.size());
-		pathData.initPathData();
-		pathData.initPathData();				
-		for(NGeoPoint p : traceList){
-			pathData.addPathPoint(p.getLongitude(), p.getLatitude(), NMapPathLineStyle.TYPE_SOLID);
-		}
-		pathData.endPathData();
-		mOverlayManager.createPathDataOverlay(pathData);
-	}	
 	
 	/**
-	 * 이동 저장 처리
+	 * 운동 경로 불러오기
 	 */
-	private void saveTrace(){
+	private void loadExercisePath(){
+		Intent intent = getIntent();
+		int index = intent.getIntExtra("index", -1);
+		int cal = intent.getIntExtra("cal", 0);
+		distanceTv.setText("이동거리 : " + intent.getStringExtra("distance") + "m (" + cal + "Kcal)");
 		DbHelper db = new DbHelper(this);
-		// 운동 정보 기록
-		runningData.setDistance(String.valueOf(totalDistance));
-		runningData.setCal(100);		
-		db.insertRunning(runningData);
-		// 저장 인덱스 얻기
-		int index = db.getLastRunningIndex();
+		ArrayList<PathPoint> list = db.selectExercusePath(index);
 		// 총 이동 좌표 갯수
-		int totalSize = traceList.size();
-		String flag;
+		int totalSize = list.size();
+		// set path data points
+		NMapPathData pathData = new NMapPathData(totalSize);
+		pathData.initPathData();	
+		PathPoint p;
+		NMapPOIdata poiData = new NMapPOIdata(1, mMapViewerResourceProvider);
+		poiData.beginPOIdata(2);	
+		
 		for(int i=0;  i<totalSize; i++){
-			flag = "";
-			NGeoPoint p = traceList.get(i);
-			// 출발, 도착 여부
+			p = list.get(i);
+			pathData.addPathPoint(p.getLongitude(), p.getLatitude(), NMapPathLineStyle.TYPE_SOLID);
+			// 출발위치
 			if(i == 0){
-				flag = "start";
-			}else if(i == totalSize-1){
-				flag = "end";
-			}
-			db.insertTraceCoord(index, p.getLatitude(), p.getLongitude(), flag);			
+				// 출발 위치로 지도 이동
+				mMapController.animateTo(new NGeoPoint(p.getLongitude(), p.getLatitude()));	
+				poiData.addPOIitem(p.getLongitude(), p.getLatitude(), "", NMapPOIflagType.FROM, null);
+				String startPlace = getAddressStr(p.getLatitude(), p.getLongitude());				
+				startPlaceTv.setText("출발 : " + startPlace);
+				Date date = new Date(Long.valueOf(p.getDate()));
+				startTimeTv.setText("출발시각 : " + new SimpleDateFormat("k시 m분 s초").format(date));						
+			// 도착위치	
+			}else if(i == totalSize -1){
+				poiData.addPOIitem(p.getLongitude(), p.getLatitude(), "", NMapPOIflagType.TO, null);
+				String endPlace = getAddressStr(p.getLatitude(), p.getLongitude());
+				runningData.setEndPlace(endPlace);
+				endPlaceTv.setText("도착 : " +endPlace);	
+				Date date = new Date(Long.valueOf(p.getDate()));
+				endTimeTv.setText("도착시각 : " + new SimpleDateFormat("k시 m분 s초").format(date));					
+				poiData.endPOIdata();
+				mOverlayManager.createPOIdataOverlay(poiData, null);				
+			}			
 		}
+
+
+		pathData.endPathData();
+		mOverlayManager.createPathDataOverlay(pathData);			
 
 		db.close();
 	}
@@ -368,9 +310,8 @@ public class ExerciseResultMapActivity extends NMapActivity {
 
 		@Override
 		public void onMapInitHandler(final NMapView nv, final NMapError ne) {
-			Intent intent = getIntent();
-			NGeoPoint point = new NGeoPoint(126.978031, 37.566528);
-			mMapController.setMapCenter(point, 10);
+			loadExercisePath();			// 운동 경로 정보 가져오기
+			
 		}
 
 		@Override
@@ -661,179 +602,6 @@ public class ExerciseResultMapActivity extends NMapActivity {
 		}
 	}
 
-	/**
-	 * 단말기 현위치로 이동
-	 */
-	private void moveToMyPlace() {
-		try {
-			//String addressStr = getAddressStr();
-
-			mMapController.animateTo(new NGeoPoint(mLocation.getLongitude(), mLocation.getLatitude()));
-			// 출발 or 도착 버튼 처리
-			final Button  traceBtn = (Button) findViewById(R.id.trace_btn);
-			// 현위치를 찾을때까지 출발버튼을 잠근다.
-			traceBtn.setEnabled(true);
-			traceBtn.setClickable(true);		
-			
-		} catch (NullPointerException npe) {
-			// 마지막 네트워크 위치 수신값 받아온 후!
-			Location tmpLocation = mLocationManager
-					.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-			// 마지막 위치값이 없으면
-			if (tmpLocation == null) {
-				// 오래된 위치값이면 위치값을 받아 올수 있게 1초를 기다린후 다시 위치 수신 실행!
-				mHandler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						moveToMyPlace(); // 다시 현재 위치를 찾는다.
-					}
-				}, 1000);
-				return;
-			}
-
-			// 이전 시간 비교
-			long locationTime = System.currentTimeMillis()
-					- tmpLocation.getTime();
-			// 이전 위치값시간이 1분 이내면 위치값 사용
-			if (locationTime < (1000 * 60 * 1)) {
-				mLocation = tmpLocation;
-				moveToMyPlace(); // 다시 현재 위치를 찾는다.
-			} else {
-				// 오래된 위치값이면 위치값을 받아 올수 있게 1초를 기다린후 다시 위치 수신 실행
-				mHandler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						moveToMyPlace(); // 다시 현재 위치를 찾는다.
-					}
-				}, 1000);
-			}
-		}
-	}
-
-	/**
-	 * 좌표를 이용하여 주소가져오기
-	 * 
-	 * @return 주소명
-	 * @throws IOException
-	 */
-	private String getAddressStr() {
-		Geocoder gc = new Geocoder(this, Locale.getDefault());
-		List<Address> addresses;
-		String addressStr = "현위치";
-		try {
-			addresses = gc.getFromLocation(mLocation.getLatitude(),
-					mLocation.getLongitude(), 1);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return addressStr;
-		}
-		if (addresses.size() > 0) { // 주소가 있으면
-			// 첫번째 주소 컬렉션을 얻은후
-			Address address = addresses.get(0);
-			// 실제 주소만 가져온다.
-			addressStr = address.getAddressLine(0).replace("대한민국", "").trim();
-			Toast.makeText(ExerciseResultMapActivity.this, addressStr, Toast.LENGTH_LONG)
-					.show();
-		}
-		return addressStr;
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		// 위치 수신 해제
-		mLocationManager.removeUpdates(loclistener);
-
-	}
-
-	/**
-	 * gps가 비활성화시 gps 환경설정 화면으로 이동여부 다이얼로그
-	 */
-	private void showLocationDialog() {
-		new AlertDialog.Builder(this)
-				.setMessage(
-						" 위치 무선 네트워크 사용  혹은 GPS가 비활성화 되어있습니다. 설정화면으로 이동 하시겠습니까?")
-				.setCancelable(false)
-				.setTitle("알림")
-				.setPositiveButton("이동", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(final DialogInterface dialog,
-							final int id) {
-						Intent gpsOptionsIntent = new Intent(
-								android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-						startActivity(gpsOptionsIntent);
-					}
-				})
-				.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(final DialogInterface dialog,
-							final int id) {
-						dialog.cancel();
-					}
-				}).show();
-	}
-
-	/**
-	 * 위치 수신 리스너
-	 */
-	private final LocationListener loclistener = new LocationListener() {
-		@Override
-		public void onLocationChanged(final Location location) { // 위치 변경시
-			mLocation = location;
-			if(isStarted){		// 운동을 시작했으면 위치를 저장한다.
-				traceList.add(new NGeoPoint(mLocation.getLongitude(), mLocation.getLatitude()));
-				// set path data points
-				NMapPathData pathData = new NMapPathData(traceList.size());
-				pathData.initPathData();
-
-				for(NGeoPoint p : traceList){
-					pathData.addPathPoint(p.getLongitude(), p.getLatitude(), NMapPathLineStyle.TYPE_SOLID);
-				}
-				pathData.endPathData();
-				mOverlayManager.createPathDataOverlay(pathData);	
-				
-				// 이전 현위치가 있으면 삭제한다.
-				if(myPlaceOveray != null){
-					mOverlayManager.removeOverlay(myPlaceOveray);
-				}
-				// 현위치 마커
-				NMapPOIdata poiData = new NMapPOIdata(1, mMapViewerResourceProvider);
-				poiData.beginPOIdata(1);				
-				poiData.addPOIitem(mLocation.getLongitude(), mLocation.getLatitude(), "", NMapPOIflagType.SPOT, null);
-				poiData.endPOIdata();
-				myPlaceOveray= mOverlayManager.createPOIdataOverlay(poiData, null);
-			
-				// 이동거리 계산하기
-				float[] results = new float[5];
-				if(beforeLat !=-1){	// 이전 거리가 있을경우만
-					Location.distanceBetween(beforeLat, beforeLon, location.getLatitude(), 	location.getLongitude(), results);
-					totalDistance += (int)results[0];
-					distanceInfoTv.setText("이동 거리 : " + totalDistance + "m");
-				}
-				// 이전 거리 저장
-				beforeLat = location.getLatitude();
-				beforeLon = location.getLongitude();
-			}
-		}
-
-		/**
-		 * 위치제공자의 상태가 변경되는 경우 호출된다!
-		 */
-		@Override
-		public void onProviderDisabled(final String provider) {
-		}
-
-		@Override
-		public void onProviderEnabled(final String provider) {
-
-		}
-
-		@Override
-		public void onStatusChanged(final String provider, final int status,
-				final Bundle extras) {
-		}
-	};
 	
 	/**
 	 * 	좌표를 이용하여 주소가져오기

@@ -1,7 +1,9 @@
 package kr.co.diet.map;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -9,6 +11,7 @@ import kr.co.diet.ConstantActivity;
 import kr.co.diet.DbHelper;
 import kr.co.diet.R;
 import kr.co.diet.dao.RunningData;
+import kr.co.diet.utils.DietUtils;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -56,6 +59,7 @@ import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay;
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager.OnCalloutOverlayListener;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
+import com.nhn.android.mapviewer.overlay.NMapPathDataOverlay;
 
 /**
  * Naver open api 를 이용하여 지도를 보여준다. 위치 로깅 내역을 오버레이 아이콘으로 나타낸다.
@@ -76,10 +80,13 @@ public class MapActivity extends NMapActivity {
 	private final ArrayList<String> addressList = new ArrayList<String>(); // 주소를 저장할 리스트
 	
 	// ui
-	private TextView distanceInfoTv;	// 이동 거리르 정보 텍스트뷰
+	private TextView startTimeTv;		// 출발 시각
+	private TextView endTimeTv;			// 도착 시각
 	private TextView startPlaceTv;		// 출발 위치
 	private TextView endPlaceTv;		// 도착 위치
+	private TextView distanceTv;		// 운동거리
 	private NMapPOIdataOverlay myPlaceOveray;	// 현위치 오버레이	
+	private NMapPathDataOverlay pathOveray;		// 경로 오버레이
 	// location
 	private Location mLocation;
 	private LocationManager mLocationManager;
@@ -88,6 +95,7 @@ public class MapActivity extends NMapActivity {
 	private double beforeLat = -1;	// 이전 위도거리
 	private double beforeLon = -1;	// 이전 경도 거리	
 	private int totalDistance = 0;	// 총 이동거리
+	private int mWeight = 0;		// 내 몸무게
 	// 추적 좌표 컬랙션
 	private ArrayList<NGeoPoint> traceList = new ArrayList<NGeoPoint>();
 	// 운동정보Dao
@@ -118,12 +126,14 @@ public class MapActivity extends NMapActivity {
 		mMapController.setMapViewBicycleMode(!mMapController
 				.getMapViewBicycleMode());
 		// use built in zoom controls
+		/*
 		NMapView.LayoutParams lp = new NMapView.LayoutParams(
 				NMapView.LayoutParams.WRAP_CONTENT,
 				NMapView.LayoutParams.WRAP_CONTENT,
 				NMapView.LayoutParams.TOP_LEFT);
 		mMapView.setBuiltInZoomControls(true, lp);
-
+		*/
+		
 		// create resource provider
 		mMapViewerResourceProvider = new NMapViewerResourceProvider(this);
 		// create overlay manager
@@ -171,16 +181,21 @@ public class MapActivity extends NMapActivity {
 		initLayout();				// 레이아웃 초기화
 		initLocationListener();	// 위치 수신 설정
 		
-		moveToMyPlace();
+		moveToMyPlace();		// 현재 위치로 이동
+		
+		SharedPreferences pref = getSharedPreferences(ConstantActivity.PREFERENCE, MODE_PRIVATE);
+		mWeight = Integer.valueOf(pref.getString("weight", "50"));
 	}
 
 	/**
 	 * 레이아웃 초기화
 	 */
 	private void initLayout() {
-		distanceInfoTv = (TextView)findViewById(R.id.distance_info);
 		startPlaceTv = (TextView)findViewById(R.id.start_place);
-		endPlaceTv = (TextView)findViewById(R.id.end_place);		
+		endPlaceTv = (TextView)findViewById(R.id.end_place);
+		distanceTv = (TextView)findViewById(R.id.distance);
+		startTimeTv = (TextView)findViewById(R.id.startTime);
+		endTimeTv  = (TextView)findViewById(R.id.endTime);
 		// 내 위치로 이동 버튼 처리
 		ImageButton locBtn = (ImageButton) findViewById(R.id.loc_btn);
 		locBtn.setOnClickListener(new OnClickListener() {
@@ -258,19 +273,27 @@ public class MapActivity extends NMapActivity {
 		poiData.beginPOIdata(1);				
 		// 출발 혹은 도착시 오버레이 아이템을 보여준다.
 		if(TextUtils.equals(traceBtn.getText(), "출발")  ){
+			// 이전 거리 저장
+			beforeLat = mLocation.getLatitude();
+			beforeLon = mLocation.getLongitude();	
+			
 			poiData.addPOIitem(mLocation.getLongitude(), mLocation.getLatitude(), "", NMapPOIflagType.FROM, null);
 			traceBtn.setText("도착");
 			isStarted = true;
 			String startPlace = getAddressStr(mLocation.getLatitude(), mLocation.getLongitude());
 			runningData.setStartPlace(startPlace);			
 			startPlaceTv.setText("출발 : " + startPlace);
+			startTimeTv.setText("출발시각 : " +new SimpleDateFormat("k시 m분 s초").format(new Date()));
+	
 		}else{		// 도착시 버튼 숨김
 			isStarted = false;
 			poiData.addPOIitem(mLocation.getLongitude(), mLocation.getLatitude(), "", NMapPOIflagType.TO, null);
 			traceBtn.setVisibility(View.GONE);
 			String endPlace = getAddressStr(mLocation.getLatitude(), mLocation.getLongitude());
 			runningData.setEndPlace(endPlace);
-			endPlaceTv.setText("도착 : " +endPlace);			
+			endPlaceTv.setText("도착 : " +endPlace);		
+			endTimeTv.setText("도착시각 : " + new SimpleDateFormat("k시 m분 s초").format(new Date()));			
+			 
 			// 이동거리 기록 처리
 			saveTrace();
 		}
@@ -296,7 +319,7 @@ public class MapActivity extends NMapActivity {
 		DbHelper db = new DbHelper(this);
 		// 운동 정보 기록
 		runningData.setDistance(String.valueOf(totalDistance));
-		runningData.setCal(100);		
+		runningData.setCal(DietUtils.calcurateCal(totalDistance, mWeight));		
 		db.insertRunning(runningData);
 		// 저장 인덱스 얻기
 		int index = db.getLastRunningIndex();
@@ -799,15 +822,17 @@ public class MapActivity extends NMapActivity {
 			mLocation = location;
 			if(isStarted){		// 운동을 시작했으면 위치를 저장한다.
 				traceList.add(new NGeoPoint(mLocation.getLongitude(), mLocation.getLatitude()));
+				if(pathOveray != null){
+					mOverlayManager.removeOverlay(pathOveray);
+				}
 				// set path data points
 				NMapPathData pathData = new NMapPathData(traceList.size());
 				pathData.initPathData();
-
 				for(NGeoPoint p : traceList){
 					pathData.addPathPoint(p.getLongitude(), p.getLatitude(), NMapPathLineStyle.TYPE_SOLID);
 				}
 				pathData.endPathData();
-				mOverlayManager.createPathDataOverlay(pathData);	
+				pathOveray = mOverlayManager.createPathDataOverlay(pathData);	
 				
 				// 이전 현위치가 있으면 삭제한다.
 				if(myPlaceOveray != null){
@@ -825,7 +850,9 @@ public class MapActivity extends NMapActivity {
 				if(beforeLat !=-1){	// 이전 거리가 있을경우만
 					Location.distanceBetween(beforeLat, beforeLon, location.getLatitude(), 	location.getLongitude(), results);
 					totalDistance += (int)results[0];
-					distanceInfoTv.setText("이동 거리 : " + totalDistance + "m");
+					int cal = DietUtils.calcurateCal(totalDistance, mWeight);
+					distanceTv.setText("이동 거리 : " + totalDistance + "m (" + cal + "Kcal)");
+					
 				}
 				// 이전 거리 저장
 				beforeLat = location.getLatitude();

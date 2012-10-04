@@ -46,10 +46,10 @@ public class ExerciseListAdapter extends BaseAdapter {
 		// 엘리먼트 후킹
 		TextView dateTV = (TextView) item.findViewById(R.id.date);
 		// 엘리먼트 후킹
-		TextView calTV = (TextView) item.findViewById(R.id.cal);		
-
-		dateTV.setText(data.getStartPlace());
+		TextView calTV = (TextView) item.findViewById(R.id.distance);		
 		
+		dateTV.setText(data.getDate());
+		calTV.setText("("+ data.getDistance() + "m  " +  data.getCal() + "Kcal )");
 		return item;
 	}
 
@@ -70,7 +70,7 @@ public class ExerciseListAdapter extends BaseAdapter {
 		Context context = parent.getContext(); // 부모뷰로부터 컨택스트를 얻어온다.
 		LayoutInflater inflater = LayoutInflater.from(context);
 		// custom list를 위해 인플레이터로 뷰를 가져온다
-		ViewGroup item = (ViewGroup) inflater.inflate(R.layout.day_cal_list_item, null);
+		ViewGroup item = (ViewGroup) inflater.inflate(R.layout.exercise_list_item, null);
 		return item;
 	}
 

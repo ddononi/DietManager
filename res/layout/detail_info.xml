@@ -5,31 +5,6 @@
     android:minWidth="280dp"
     android:background="#f8f8f8"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal" >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:tag="bold"
-            android:text="총 섭취 칼로리"
-            android:textColor="#333333"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:gravity="right"
-            android:tag="bold"
-            android:id="@+id/total_cal"
-            android:textColor="#fe861b"
-            android:textSize="15dp" />
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,7 +59,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:orientation="horizontal" >
         <TextView
             android:layout_width="wrap_content"
@@ -110,7 +84,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:orientation="horizontal" >
         <TextView
             android:layout_width="wrap_content"
@@ -131,5 +104,31 @@
             android:textColor="#fe861b"
             android:textSize="15dp" />
     </LinearLayout>         
+    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:tag="bold"
+            android:text="총 섭취 칼로리"
+            android:textColor="#333333"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:gravity="right"
+            android:tag="bold"
+            android:id="@+id/total_cal"
+            android:textColor="#fe861b"
+            android:textSize="15dp" />
+    </LinearLayout>    
     
 </LinearLayout>

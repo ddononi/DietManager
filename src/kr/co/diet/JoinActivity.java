@@ -136,6 +136,11 @@ public class JoinActivity extends ConstantActivity {
 		db.insert("user_info", null, cv);
 		db.close();
 		dbhelper.close();
+		// 몸무게 저장
+		SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+		SharedPreferences.Editor editor = pref.edit();
+		editor.putString("weight",weightEt.getText().toString());
+		editor.commit();
 	}
 
 	/**

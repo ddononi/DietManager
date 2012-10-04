@@ -6,6 +6,7 @@ import java.util.Date;
 
 import kr.co.diet.dao.DayCalData;
 import kr.co.diet.dao.MyInfoData;
+import kr.co.diet.dao.PathPoint;
 import kr.co.diet.dao.RunningData;
 
 import android.content.ContentValues;
@@ -45,6 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
 			     " dinner INTEGER NOT NULL, " + 		// 저녁
 			     " snack INTEGER NOT NULL " +			// 간식
 			     ");";		
+		db.execSQL(sql);
 		
 		// 운동 기록  테이블
 		sql = "CREATE TABLE running_record (idx INTEGER PRIMARY KEY," +
@@ -230,6 +232,35 @@ public class DbHelper extends SQLiteOpenHelper {
 				data.setDinner(dinner);				
 				data.setSnake(snack);
 				Log.i("cal", " "  +breakfast );
+				list.add(data);
+			}while(cursor.moveToNext());
+		}
+		return list;
+	}
+	
+	/**
+	 * 운동목록 인덱스의 운동경로를 가져온다.
+	 * @return
+	 */
+	public ArrayList<PathPoint> selectExercusePath(int index){
+		SQLiteDatabase db =  this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM trace_coord WHERE running_record_idx = ? ORDER BY idx ASC ",
+				new String[]{String.valueOf(index), });
+		ArrayList<PathPoint> list = null;
+		if(cursor.moveToFirst()){
+			list = new ArrayList<PathPoint>();
+			do{
+				PathPoint data = new PathPoint();	
+				
+				String flag = cursor.getString(cursor.getColumnIndex("flag"));
+				String latitude = cursor.getString(cursor.getColumnIndex("latitude"));
+				String longitude = cursor.getString(cursor.getColumnIndex("longitude"));
+				String dateMillis = cursor.getString(cursor.getColumnIndex("dateMillis"));		
+				
+				data.setDate(dateMillis);				
+				data.setLatitude(Double.valueOf(latitude));
+				data.setLongitude(Double.valueOf(longitude));
+				data.setPathFlag(flag);
 				list.add(data);
 			}while(cursor.moveToNext());
 		}

@@ -55,9 +55,9 @@ public class MyCalListActivity extends ConstantActivity {
 			
 		});
 
-	}	
+	}
 	
-	
+
 	/**
 	 * 칼로리 등록 화면으로 이동
 	 * @param v
