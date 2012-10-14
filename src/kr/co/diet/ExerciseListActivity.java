@@ -50,7 +50,6 @@ public class ExerciseListActivity extends BaseActivity {
 			public void onItemClick(AdapterView<?> av, View v, int pos,
 					long arg3) {
 				RunningData data = (RunningData) adapter.getItem(pos);
-				Toast.makeText(ExerciseListActivity.this, data.getIndex() + " ", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(ExerciseListActivity.this, ExerciseResultMapActivity.class);
 				intent.putExtra("index", data.getIndex());
 				intent.putExtra("distance", data.getDistance());
