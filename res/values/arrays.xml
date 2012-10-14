@@ -12,7 +12,7 @@
         <item>심한</item>
         <item>격한</item>
     </string-array>
-    
+
 	<string-array name="local_list">
 		<item>서울</item>
 		<item>경기</item>
@@ -24,6 +24,18 @@
 		<item>경남</item>
 		<item>제주</item>
 	</string-array>
+	
+	<string-array name="local_list_value">
+		<item>seoul</item>
+		<item>gyeonggi</item>
+		<item>Chungcheongbukdo</item>
+		<item>Chungcheongnamdo</item>
+		<item>Jeollanamdo</item>
+		<item>Jeollabukdo</item>
+		<item>Gangwondo</item>
+		<item>Gyeongsangbukdo</item>
+		<item>jeju</item>
+	</string-array>	
 	
 	
 	<string-array name="food_calories">

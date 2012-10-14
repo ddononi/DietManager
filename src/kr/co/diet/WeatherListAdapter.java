@@ -51,11 +51,11 @@ public class WeatherListAdapter extends BaseAdapter {
 		TextView minTempTv = (TextView) item.findViewById(R.id.list_min_temp);
 		WebImageView imgTv = (WebImageView) item.findViewById(R.id.icon);
 		// 엘리먼트에 값을 set해준다,
-		dayOfWeekTv.setText(data.getDayOfWeek()+"요일");
+		dayOfWeekTv.setText(data.getDayOfWeek());
 		conditionTv.setText(data.getCondition());
 		maxTempTv.setText(data.getHighTemp() +"℃");
 		minTempTv.setText(data.getLowTemp() +"℃");
-		imgTv.setImasgeUrl(ConstantActivity.GOOGLE_URL + data.getWeatherImgUrl());
+		imgTv.setImasgeUrl(ConstantActivity.MSN_WEATHER_IMAGE_URL + data.getWeatherImgUrl() +  ".gif");
 		return item;
 	}
 

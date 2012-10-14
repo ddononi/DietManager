@@ -27,10 +27,10 @@ public class ConstantActivity extends BaseActivity {
     /* open api */
     public static final String MAP_KEY = "0ba9dad212cac5f575cc01ff121323295e8dc343";
     public static final String DAUM_LOCAL_KEY = "1a4150ac00469d2392fab7b8c0ff9b076dc07ad1";	
-	// google weather xml url
-	public final static String GOOGLE_URL = "http://www.google.co.kr/";
-	// google weather xml url
-	public final static String GOOGLE_WEATHER_URL = "http://www.google.co.kr/ig/api?weather=";	
+	// msn weather xml url
+	public final static String MSN_WEATHER_IMAGE_URL = "http://blu.stc.s-msn.com/as/wea3/i/en/";
+	// msn weather xml url
+	public final static String MSN_WEATHER_URL = "http://weather.service.msn.com/data.aspx?weadegreetype=C&culture=ko-KR&weasearchstr=";	
 	
 	// 연결시도 최대 시간
 	public final static int CONNECTION_TIME_OUT = 5000;	

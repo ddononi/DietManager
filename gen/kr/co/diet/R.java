@@ -13,8 +13,9 @@ public final class R {
     }
     public static final class array {
         public static final int active_chocie=0x7f050001;
-        public static final int food_calories=0x7f050003;
+        public static final int food_calories=0x7f050004;
         public static final int local_list=0x7f050002;
+        public static final int local_list_value=0x7f050003;
         public static final int sex_chocie=0x7f050000;
     }
     public static final class attr {
@@ -109,7 +110,7 @@ public final class R {
         public static final int cal=0x7f090001;
         public static final int cal_info_btn=0x7f090024;
         public static final int date=0x7f090000;
-        public static final int day_cal_manage=0x7f090026;
+        public static final int day_cal_manage=0x7f090027;
         public static final int dinner=0x7f090004;
         public static final int dinner_spinner=0x7f09002f;
         public static final int distance=0x7f090007;
@@ -149,14 +150,14 @@ public final class R {
         public static final int snack_spinner=0x7f090030;
         public static final int startTime=0x7f090011;
         public static final int start_place=0x7f09000f;
-        public static final int tip_info_btn=0x7f090025;
+        public static final int tip_info_btn=0x7f090026;
         public static final int top=0x7f090032;
         public static final int top_box=0x7f09000a;
         public static final int total_cal=0x7f090006;
         public static final int trace_btn=0x7f090013;
         public static final int txt_title=0x7f090031;
-        public static final int user_info=0x7f090028;
-        public static final int weather_info=0x7f090027;
+        public static final int user_info=0x7f090025;
+        public static final int weather_info=0x7f090028;
         public static final int webview=0x7f090014;
         public static final int weight_input=0x7f09001e;
         public static final int weight_label=0x7f09001d;
