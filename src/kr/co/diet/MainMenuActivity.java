@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 /**
- *	메인 메뉴 선택 화면
+ * 메인 메뉴 선택 화면
  */
 public class MainMenuActivity extends ConstantActivity {
 	@Override
@@ -17,64 +17,64 @@ public class MainMenuActivity extends ConstantActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu_layout);
 		initLayout();
-	
+
 	}
 
 	private void initLayout() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void mOnClick(View v){
+	public void mOnClick(View v) {
 		Intent intent = new Intent();
-		switch(v.getId()){
+		switch (v.getId()) {
 
-		case R.id.day_cal_manage : 			// 일일 칼로리 계산내역
+		case R.id.day_cal_manage: // 일일 칼로리 계산내역
 			intent.setClass(this, MyCalListActivity.class);
-			break;				
-
-		case R.id.cal_info_btn : 			// 칼로리 정보
-			intent.setClass(this, CalWebViewActivity.class);
-			break;				
-		
-		case R.id.tip_info_btn : 			// 상식 및 식습관 정보
-			intent.setClass(this, TipWebViewActivity.class);
-			break;		
-		
-		case R.id.exercise_cal_info_btn :	// 운동 칼로리 정보
-			intent.setClass(this, ExerciseListActivity.class);
-			break;		
-		
-		case R.id.exercise_run_btn :	// 운동방법
-			intent.setClass(this, MapActivity.class);
-
 			break;
-			
-		
-		case R.id.weather_info : 			// 날씨정보
+
+		case R.id.cal_info_btn: // 칼로리 정보
+			intent.setClass(this, CalWebViewActivity.class);
+			break;
+
+		case R.id.tip_info_btn: // 상식 및 식습관 정보
+			intent.setClass(this, TipWebViewActivity.class);
+			break;
+
+		case R.id.exercise_cal_info_btn: // 운동 칼로리 정보
+			intent.setClass(this, ExerciseListActivity.class);
+			break;
+
+		case R.id.exercise_run_btn: // 운동방법
+			intent.setClass(this, MapActivity.class);
+			break;
+
+		case R.id.month_manage: // 월별 관리
+			intent.setClass(this, MonthActivity.class);
+			break;
+
+		case R.id.weather_info: // 날씨정보
 			intent.setClass(this, WeatherActivity.class);
-			break;	
-			
-		case R.id.user_info :				// 사용자정보
+			break;
+
+		case R.id.user_info: // 사용자정보
 			intent.setClass(this, UserInfoActivity.class);
 			break;
-						
-				
-		case R.id.help_btn :				// 도움말
+
+		case R.id.help_btn: // 도움말
 			intent.setClass(this, HelpActivity.class);
 			break;
 		}
-		
+
 		startActivity(intent);
 	}
-	
-	
+
 	private boolean isTwoClickBack = false;
+
 	@Override
 	public boolean onKeyDown(final int keyCode, final KeyEvent event) {
 		/*
-		 * back 버튼이면 타이머(2초)를 이용하여 다시한번 뒤로 가기를
-		 * 누르면 어플리케이션이 종료 되도록한다.
+		 * back 버튼이면 타이머(2초)를 이용하여 다시한번 뒤로 가기를 누르면 어플리케이션이 종료 되도록한다.
 		 */
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -85,7 +85,7 @@ public class MainMenuActivity extends ConstantActivity {
 					timer.start();
 				} else {
 					moveTaskToBack(true);
-	                finish();
+					finish();
 					return true;
 				}
 
@@ -111,6 +111,5 @@ public class MainMenuActivity extends ConstantActivity {
 		public void onTick(final long millisUntilFinished) {
 		}
 	}
-	
-	
+
 }

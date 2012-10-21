@@ -194,7 +194,7 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
             android:background="@drawable/btn"
-            android:text="회원가입"
+            android:text="등록"
             android:textColor="#fff" />
     </LinearLayout>
 
